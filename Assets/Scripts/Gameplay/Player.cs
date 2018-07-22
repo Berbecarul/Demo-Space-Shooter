@@ -6,21 +6,12 @@ using UnityEngine.Events;
 namespace Gameplay
 {
 
-    public class Player : MonoBehaviour,IKillable
+    public class Player : MonoBehaviour
     {
         public static Player _instance { get; protected set; }
 
-        public int _hitPoints
-        {
-            get
-            {
-                return startingHp;
-            }
-        }
-
         [Header("Properties")]
         public float maxSpeed = 10;
-        public int startingHp = 10;
 
         [Header("Events")]
         public UnityEvent onDeath;
@@ -29,7 +20,6 @@ namespace Gameplay
         public Rigidbody rb;
 
         Vector3 movementVector;
-        int currentHp;
 
         private void Awake()
         {
@@ -39,10 +29,6 @@ namespace Gameplay
                 Destroy(this.gameObject);
         }
 
-        private void OnEnable()
-        {
-            SelfReset();
-        }
 
         private void Update()
         {
@@ -58,17 +44,6 @@ namespace Gameplay
             rb.velocity = movementVector;
         }
 
-        void SelfReset()
-        {
-            currentHp = startingHp;
-            Events.InvokePlayerHpUpdate(currentHp);
-        }
-
-        public void TakeDamage(int damage)
-        {
-            currentHp -= damage;
-            Events.InvokePlayerHpUpdate(currentHp);
-        }
     }
 
 }

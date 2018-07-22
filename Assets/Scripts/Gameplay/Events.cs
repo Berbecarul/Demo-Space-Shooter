@@ -47,11 +47,5 @@ public static class Events
         _waveStarted?.Invoke(); 
     }
 
-    public static event Action _gameOver;
-    public static void InvokeGameOver()
-    {
-        _gameOver?.Invoke();
-    }
-
 
 }
