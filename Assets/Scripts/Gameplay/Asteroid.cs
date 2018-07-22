@@ -11,7 +11,7 @@ namespace Gameplay
         [Header("Properties")]
         
         public int startingHp = 10;
-        public int scorePerKill = 1;
+        public int scorePerKill = 11;
 
         public UnityEvent onDeath;
 
