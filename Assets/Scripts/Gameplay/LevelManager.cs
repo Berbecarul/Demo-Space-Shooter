@@ -8,7 +8,7 @@ namespace Gameplay {
     public class LevelManager : MonoBehaviour
     {
         [Header("Playable Space Management")]
-        public float width = 6;
+        public float width = 5;
         public float length = 8;
 
         [Header("Wave Management")]
