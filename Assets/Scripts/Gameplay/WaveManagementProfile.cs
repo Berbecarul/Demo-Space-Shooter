@@ -13,7 +13,7 @@ namespace Gameplay
         public List<GameObject> enemies;
 
         [Header("Endless Wave Management")]
-        public float maxSpawnDelay = 1;
+        public float maxSpawnDelay = 3;
         public float minSpawnDelay = 0.05f;
         public float delayDecreaseVelocity = 0.2f;
         public float spawnArc = 90;
