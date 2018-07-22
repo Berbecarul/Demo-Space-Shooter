@@ -18,3 +18,12 @@ MonoBehaviour:
   - prefab: {fileID: 1275903503437444, guid: 315b08a6e69ecf54ba7636f4bbd1c837, type: 2}
     poolStartSize: 11
     allowExpand: 1
+  - prefab: {fileID: 1900195190504660, guid: d863d187729f8a447a27bb9d23b53959, type: 2}
+    poolStartSize: 11
+    allowExpand: 1
+  - prefab: {fileID: 1180965470785730, guid: 2f6334d668d157b46abfa1ce58935aba, type: 2}
+    poolStartSize: 11
+    allowExpand: 1
+  - prefab: {fileID: 1656277116865884, guid: 2a94c523ac36f52438306cc4e5e03a4f, type: 2}
+    poolStartSize: 11
+    allowExpand: 1

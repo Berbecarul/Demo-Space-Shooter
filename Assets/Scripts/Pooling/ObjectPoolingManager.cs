@@ -6,13 +6,9 @@ namespace ObjectPooling
 {
     public class ObjectPoolingManager : MonoBehaviour
     {
-        public static List< ObjectPoolingManager> _instances { get; protected set; } 
+        public static  ObjectPoolingManager _instance { get; protected set; } 
         public List<ObjectPool> _objectPools { get; protected set; }
-
-        [Header("Manager Behaviour")]
-        [SerializeField]
-        bool dontDestroyOnLoadFlag = false; 
-
+		 
         [Header("Object Pools Profiles")]
         public List<ObjectPoolProfile> objectPoolProfiles;
 
@@ -24,14 +20,12 @@ namespace ObjectPooling
             if (poolsInitialised == false)
                 StartCoroutine(InitialisationRoutine());
 
-            if (dontDestroyOnLoadFlag == true)
-                DontDestroyOnLoad(this.gameObject);
+          
+			if (_instance == null)
+				_instance = this;
+			else
+				Destroy (_instance);
 
-            if (_instances == null)
-                _instances = new List<ObjectPoolingManager>();
-
-            if (_instances.Contains(this) == false)
-                _instances.Add(this);
         }
 
 
@@ -55,24 +49,20 @@ namespace ObjectPooling
 
         private void OnDestroy()
         {
-            if (_instances.Contains(this) == false)
-                _instances.Remove(this);
+			_instance = null;
         }
 
 
         public static ObjectPool GetMatchingPool(GameObject prefab)
         {
-            for (int i = 0; i < _instances.Count; i++)
-            {
-                for (int j = 0; j < _instances[i]._objectPools.Count; j++)
+            
+			for (int j = 0; j <_instance._objectPools.Count; j++)
                 {
-                    if (prefab.name.Equals(_instances[i]._objectPools[j]._poolData.prefab.name))
-                        return _instances[i]._objectPools[j];
+				if (prefab.name.Equals(_instance._objectPools[j]._poolData.prefab.name))
+					return _instance._objectPools[j];
 
                 }
-
-            }
-             
+			 
             return null;
         }
          

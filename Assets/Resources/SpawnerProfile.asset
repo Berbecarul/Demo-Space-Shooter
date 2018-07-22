@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Name: SpawnerProfile
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 0}
+  - {fileID: 1900195190504660, guid: d863d187729f8a447a27bb9d23b53959, type: 2}
+  - {fileID: 1180965470785730, guid: 2f6334d668d157b46abfa1ce58935aba, type: 2}
+  - {fileID: 1656277116865884, guid: 2a94c523ac36f52438306cc4e5e03a4f, type: 2}
+  maxSpawnDelay: 1.2
+  minSpawnDelay: 0.38
+  delayDecreaseVelocity: 0.2
+  spawnArc: 90

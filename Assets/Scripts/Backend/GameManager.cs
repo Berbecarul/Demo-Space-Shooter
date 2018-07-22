@@ -49,16 +49,13 @@ namespace BackEnd
 
         public static void ExitGame()
         {
+			Debug.Log ("App Quit");
             Application.Quit();
         }
 
         #region LEVEL_MANAGEMENT
 
-        public static void QuickLoadLevel(int index)
-        {
-
-        }
-
+         
         public static void LoadNextLevel()
         {
             LoadLevel(SceneManager.GetActiveScene().buildIndex + 1);
@@ -71,6 +68,9 @@ namespace BackEnd
 
         public static void LoadLevel(string name)
         {
+			if (_instance == null)
+				return;
+
             if (isLoading)
             {
                 Debug.LogWarning("A secene is already loading");
@@ -88,6 +88,9 @@ namespace BackEnd
 
         public static void LoadLevel(int index)
         {
+			if (_instance == null)
+				return;
+
             if ( isLoading)
             {
                 Debug.LogWarning("A secene is already loading");
@@ -100,6 +103,7 @@ namespace BackEnd
 
             //trigger the loading seq
             Events.InvokeLoadingSeqStart();
+
         }
 
         private static void Events__onLoadingScreenBlackened()
@@ -107,7 +111,7 @@ namespace BackEnd
             //unsub
             Events._onLoadingScreenActivated -= Events__onLoadingScreenBlackened;
 
-            //load the scene
+            //load the scene 
             SceneManager.LoadSceneAsync(nextSceneIndexToLoad, LoadSceneMode.Single).allowSceneActivation = true;
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
 

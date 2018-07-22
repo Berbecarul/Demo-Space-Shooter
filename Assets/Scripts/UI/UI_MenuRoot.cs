@@ -13,14 +13,21 @@ namespace UI
 
         List<UI_MenuElement> openedMenus;
          
+		private void Awake (){
+			openedMenus = new List<UI_MenuElement> ();
+
+		}
 
         private void Update()
         {
-            if (Input.GetButton("Cancel") && openedMenus.Count > 0)
-                CloseLastOpenedMenu();
-            else
-                onNoMenuCancel.Invoke();
+			if (Input.GetButtonDown ("Cancel"))
+			{
+				if (openedMenus.Count > 0)
+					CloseLastOpenedMenu ();
+				else
+					onNoMenuCancel.Invoke ();
 
+			}
         }
 
         public void EnlistMenu(UI_MenuElement menuElement)

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 842d1ceed315a3d4387933009ce4a75b, type: 3}
+  m_Name: ExplosionsPool
+  m_EditorClassIdentifier: 
+  pools:
+  - prefab: {fileID: 1739371706204212, guid: 530c4c35098a4d1429914f35b36642eb, type: 2}
+    poolStartSize: 10
+    allowExpand: 0
+  - prefab: {fileID: 1726348483276126, guid: ed00d37924d65dd45a56fc4e37a8940b, type: 2}
+    poolStartSize: 10
+    allowExpand: 0
+  - prefab: {fileID: 1503078011122334, guid: 366b859179347784db2d75e40ee32658, type: 2}
+    poolStartSize: 10
+    allowExpand: 0
+  - prefab: {fileID: 1323402875952194, guid: e4c03428e94305945aa627552daeeaa6, type: 2}
+    poolStartSize: 10
+    allowExpand: 0
+  - prefab: {fileID: 1300818641092794, guid: d409ad58b28abc24b8ad9bab86ab2584, type: 2}
+    poolStartSize: 1
+    allowExpand: 0

@@ -31,11 +31,13 @@ namespace UI
         {
             scrBlackenerAnim.SetTrigger("Deactivate");
             Events._onLevelLoadedAndReady -= Events__onLevelLoadedAndReady;
+			Events._onLoadingSeqStart += Events__onLoadingSeqStart;
         }
 
         private void OnDestroy()
         {
-            
+			 
+
         }
 
         /// <summary>

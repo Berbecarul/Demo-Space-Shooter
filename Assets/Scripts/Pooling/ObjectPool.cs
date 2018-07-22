@@ -33,7 +33,8 @@ namespace ObjectPooling
          
 
         public GameObject SpawnObjectFromPool(Vector3 position, Quaternion rotation)
-        {
+        { 
+			
             for (int i = 0; i < _pool.Count; i++){
                 if (_pool[i].activeSelf == false)
                 {
