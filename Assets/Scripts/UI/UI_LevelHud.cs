@@ -11,33 +11,45 @@ namespace UI
         [Header("References")]
         public Text scoreText; 
         public Text playerHpText;
+        public GameObject startHint;
 
+		 
         private void OnEnable()
         {
-            Events._playerHpUpdate += Events__playerHpUpdate;
-            Events._scoreUpdate += Events__scoreUpdate;
-            
+			Events._onPlayerHpUpdate += Events__onPlayerHpUpdate;
+			Events._onScoreUpdate += Events__onScoreUpdate;
+            Events._onWaveStarted += Events__onWaveStarted;
         }
 
-        private void Events__scoreUpdate(int obj)
+		private void Events__onWaveStarted()
+        {
+            if (startHint == null)
+                return;
+             
+            startHint.gameObject.SetActive(false);
+        }
+ 
+
+		private void Events__onScoreUpdate(int obj)
         {
             if (scoreText == null)
                 return;
-            scoreText.text = obj.ToString();
+            scoreText.text = "Score:" + obj.ToString();
         }
 
-        private void Events__playerHpUpdate(int obj)
+		private void Events__onPlayerHpUpdate(int obj)
         {
             if (scoreText == null)
                 return;
-            playerHpText.text = obj.ToString();
+			playerHpText.text = "Lives:" +obj.ToString();
         }
 
         private void OnDisable()
-        {
-            Events._playerHpUpdate -= Events__playerHpUpdate;
-            Events._scoreUpdate -= Events__scoreUpdate;
-        }
+		{
+			Events._onPlayerHpUpdate -= Events__onPlayerHpUpdate;
+			Events._onScoreUpdate -= Events__onScoreUpdate;
+			Events._onWaveStarted -= Events__onWaveStarted;
+		}
 
 
     }

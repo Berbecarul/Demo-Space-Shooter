@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Gameplay;
 
 public static class Events
 {
 
-    /// <summary>
-    /// Event called after the scenes was activated and objects are instanced
-    /// </summary>
+     
     public static event Action _onLevelLoadedAndReady;
     public static void InvokeLevelLoadedAndReady()
     {
@@ -28,24 +27,31 @@ public static class Events
         _onLoadingScreenActivated?.Invoke();
     }
 
-    public static event Action<int> _playerHpUpdate;
+	public static event Action<int> _onPlayerHpUpdate;
     public static void InvokePlayerHpUpdate(int hp)
     {
-        _playerHpUpdate.Invoke(hp);
+		_onPlayerHpUpdate?.Invoke(hp);
 
     }
 
-    public static event Action<int> _scoreUpdate;
+    public static event Action<int> _onScoreUpdate;
     public static void InvokeScoreUpdate(int score)
     {
-        _scoreUpdate.Invoke(score);
+		_onScoreUpdate?.Invoke(score);
     }
 
-    public static event Action _waveStarted;
+    public static event Action _onWaveStarted;
     public static void InvokeWaveStarted()
     {
-        _waveStarted?.Invoke(); 
+		_onWaveStarted?.Invoke(); 
     }
 
+	public static event Action<Enemy> _onEnemyKilled;
+	public static void InvokeEnemyKilled(Enemy enemy)
+	{
+		_onEnemyKilled?.Invoke (enemy);
 
+	}
+ 
+ 
 }

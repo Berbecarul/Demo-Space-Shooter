@@ -14,7 +14,7 @@ namespace ObjectPooling
             if (prefabToSpawn == null)
                 return null;
 
-            if (ObjectPoolingManager._instances == null)
+			if (ObjectPoolingManager._instance == null)
             {
                 Debug.LogWarning("The pooling manager is not properly instanced");
                 return null;
@@ -42,7 +42,7 @@ namespace ObjectPooling
             if (gameObject == null || gameObject.activeSelf == false)
                 return;
 
-            if (ObjectPoolingManager._instances == null)
+			if (ObjectPoolingManager._instance == null)
             {
                 Debug.LogWarning("The pooling manager is not properly instanced"); 
 

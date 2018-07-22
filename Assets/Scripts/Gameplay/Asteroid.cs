@@ -27,19 +27,7 @@ namespace Gameplay
         {
             SelfReset();
         }
-
-       
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.attachedRigidbody.CompareTag("Player") && currentHp > 0)
-            {
-                this.TakeDamage(currentHp);
-            }
-        }
-
-
-
+		 
         void SelfReset()
         {
             currentHp = startingHp;
@@ -49,8 +37,12 @@ namespace Gameplay
         public override void TakeDamage(int damage)
         {
             currentHp -= damage;
-            if (currentHp <= 0)
-                onDeath.Invoke();
+			if (currentHp <= 0)
+			{
+				onDeath.Invoke ();
+				Events.InvokeEnemyKilled(this);
+			}
+
         }
 
         

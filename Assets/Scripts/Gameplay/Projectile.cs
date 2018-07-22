@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Gameplay
 {
@@ -11,6 +12,8 @@ namespace Gameplay
         public string[] hostileTags;
         public int onHitDamage;
         public float speed;
+
+		public UnityEvent onHit;
 
 
         [Header("References")]
@@ -31,7 +34,7 @@ namespace Gameplay
                 if (other.CompareTag(hostileTags[i]))
                 {
                     DealDamage(other.attachedRigidbody.GetComponent<IKillable>(), onHitDamage);
-
+					onHit.Invoke ();
                 }
             }
         }

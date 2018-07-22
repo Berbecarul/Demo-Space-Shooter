@@ -20,28 +20,61 @@ namespace Gameplay {
         public Transform enemySpawnPoint;
         public MeshCollider rightCollider;
         public MeshCollider leftCollider;
-   
+		public LineRenderer lineLeft;
+		public LineRenderer lineRight;
+
+
+		int score = 0;
 
         private void Awake()
         {
             BoundsInitialisation();
-             
+			LineRendererInit ();
+
+
+			Events._onWaveStarted += Events__onWaveStarted;
+			Events._onEnemyKilled+= Events__onEnemyKilled;
+        }
+
+        void Events__onWaveStarted ()
+        {
+			if (playerPrefab != null)
+			{
+				//place player here
+				playerPrefab.PooledSpawn(playerSpawnPoiint.position, playerSpawnPoiint.rotation);
+			}
+			else
+				Debug.LogWarning(this + "No player prefab here!");
+        }
+
+        void Events__onEnemyKilled (Enemy obj)
+        {
+			score += obj._scorePerKill;
+			Events.InvokeScoreUpdate (score);
         }
 
         private void Start()
         {
-            if (playerPrefab != null)
-            {
-                //place player here
-                playerPrefab.PooledSpawn(playerSpawnPoiint.position, playerSpawnPoiint.rotation);
-            }
-            else
-                Debug.LogWarning(this + "No player prefab here!");
+          
+			Events.InvokeScoreUpdate (score);
 
             StartCoroutine(spawnerProfile.SpawnerRoutine(enemySpawnPoint));
 
         }
 
+		void LineRendererInit()
+		{
+			lineLeft.positionCount = 2;
+			lineLeft.SetPosition (0, transform.position + new Vector3 (width * 0.5f,0, length * 0.5f));
+			lineLeft.SetPosition (1, transform.position + new Vector3 (width * 0.5f,0, -length * 0.5f));
+
+			lineRight.positionCount = 2;
+			lineRight.SetPosition (0, transform.position + new Vector3 (-width * 0.5f,0, length * 0.5f));
+			lineRight.SetPosition (1, transform.position + new Vector3 (-width * 0.5f,0, -length * 0.5f));
+
+
+
+		}
 
         void BoundsInitialisation()
         {
@@ -58,6 +91,13 @@ namespace Gameplay {
             leftCollider.transform.position = transform.position + Vector3.right * width * 0.5f;
 
         }
+
+		private void OnDestroy()
+		{
+			Events._onEnemyKilled -= Events__onEnemyKilled;
+			Events._onWaveStarted -= Events__onWaveStarted;
+
+		}
 
 
         private void OnDrawGizmos()

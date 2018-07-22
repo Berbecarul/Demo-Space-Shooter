@@ -15,7 +15,9 @@ namespace Gameplay {
         public Transform firePoint;
 
         float reloadRemainig = 0;
-         
+       
+
+
         private void OnEnable()
         {
             if (weapon == null)
@@ -23,10 +25,17 @@ namespace Gameplay {
                 Debug.LogWarning("No weapon profile here" + gameObject.name);
                 this.enabled = false;
             }
+
+		 
+
+
+
         }
 
         private void Update()
         {
+             
+
             //reloading;
             if (reloadRemainig <= 0)
             {
@@ -39,6 +48,7 @@ namespace Gameplay {
 
         }
 
+       
 
         public void FireTheWeapon()
         {
@@ -47,6 +57,10 @@ namespace Gameplay {
             weapon.projectilePrefab.PooledSpawn(firePoint.position, firePoint.rotation);
 
         }
+
+     
+
+        
 
     }
 

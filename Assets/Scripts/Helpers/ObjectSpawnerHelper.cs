@@ -9,9 +9,9 @@ namespace Helper
     {
 
 
-        public GameObject SpawnThatHere(GameObject prefab)
+        public void SpawnThatHere(GameObject prefab)
         {
-            return prefab.PooledSpawn(transform.position, transform.rotation);
+            prefab.PooledSpawn(transform.position, transform.rotation);
 
         }
 

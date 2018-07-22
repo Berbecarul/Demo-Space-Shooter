@@ -14,7 +14,7 @@ namespace Helper
         float timeLeft;
 
         private void OnEnable()
-        {
+        { 
             SelfReset();
         }
 
